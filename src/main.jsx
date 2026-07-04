@@ -115,6 +115,44 @@ function Hero() {
   );
 }
 
+function ShowroomScene() {
+  return (
+    <section className="showroom-scene" aria-label="Витрина салона Кухня в Дом">
+      <div className="showroom-copy">
+        <p className="kicker">Салон в Анапе</p>
+        <h2>Выбирайте кухню<br />не по картинке, а по ощущению<br />будущего дома</h2>
+        <p>
+          Мы собрали лендинг как цифровой шоурум: крупный визуал кухни, реальные фактуры,
+          понятный маршрут к проекту и быстрый квиз для заявки.
+        </p>
+        <div className="showroom-actions">
+          <a className="button primary" href="#quiz">Собрать мою кухню <ArrowRight size={18} /></a>
+          <a className="button secondary" href={contacts.mapUrl} target="_blank" rel="noreferrer">Посмотреть адрес</a>
+        </div>
+      </div>
+      <div className="showroom-collage">
+        <img className="showroom-main" src="/images/hero-kitchen.png" alt="Кухня в Дом - визуал современной кухни" />
+        <div className="showroom-logo-card">
+          <img src="/images/kuhnya-v-dom-logo.png" alt="Логотип Кухня в Дом" />
+          <span>Кухни и мебель на заказ</span>
+        </div>
+        <div className="showroom-materials" aria-label="Примеры фасадов и материалов">
+          {materials.slice(0, 4).map(([title, , image]) => (
+            <span key={title}>
+              <img src={image} alt={title} />
+            </span>
+          ))}
+        </div>
+      </div>
+      <div className="showroom-stats">
+        <span><strong>10-20</strong> ежедневно</span>
+        <span><strong>ТЦ Большой</strong> 2 этаж</span>
+        <span><strong>0 руб.</strong> первичный проект</span>
+      </div>
+    </section>
+  );
+}
+
 function BrandManifesto() {
   return (
     <section className="section brand-manifesto" id="brand">
@@ -146,6 +184,53 @@ function SectionTitle({ kicker, title, text }) {
       <h2>{title}</h2>
       {text && <p>{text}</p>}
     </div>
+  );
+}
+
+function DesignBoard() {
+  return (
+    <section className="section design-board" aria-label="Проектный лист кухни">
+      <div className="board-copy">
+        <p className="kicker">Проектный лист</p>
+        <h2>После квиза у клиента появляется не хаос, а понятная основа кухни</h2>
+        <p>
+          Мы фиксируем форму, стиль, бюджет, материалы и сценарий хранения. Это делает заявку
+          качественной: менеджер сразу понимает задачу, а клиент видит следующий шаг.
+        </p>
+        <a className="button primary" href="#quiz">Заполнить квиз <ArrowRight size={18} /></a>
+      </div>
+      <div className="board-visual">
+        <div className="board-hero">
+          <img src="/images/hero-kitchen.png" alt="Дизайн-проект кухни в Анапе" />
+          <span>3D-вид кухни</span>
+        </div>
+        <div className="board-panel">
+          <div className="board-panel-top">
+            <span>Кухня в Дом</span>
+            <strong>План проекта</strong>
+          </div>
+          <div className="board-tags">
+            <span>Угловая</span>
+            <span>До потолка</span>
+            <span>Матовые фасады</span>
+            <span>Встроенная техника</span>
+          </div>
+          <div className="board-checks">
+            {['Размеры помещения', 'Подбор фасадов', 'Ориентир бюджета', 'Удобное хранение'].map((item) => (
+              <span key={item}><Check size={16} /> {item}</span>
+            ))}
+          </div>
+        </div>
+        <div className="board-palette">
+          {materials.slice(0, 3).map(([title, , image]) => (
+            <figure key={title}>
+              <img src={image} alt={title} />
+              <figcaption>{title}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -510,6 +595,23 @@ function Materials() {
         title="Покажем фасады живьем и соберем сочетание под интерьер"
         text="На сайте используем реальные материалы, чтобы клиент видел не абстрактную картинку, а будущий характер кухни."
       />
+      <div className="material-lab">
+        <div>
+          <p className="kicker">Фактуры крупным планом</p>
+          <h3>Свет, дерево, камень и матовые фасады должны сочетаться до запуска производства</h3>
+          <p>
+            Поэтому на сайте показываем не абстрактный каталог, а атмосферу будущей кухни:
+            спокойную палитру, теплые древесные детали и практичные поверхности.
+          </p>
+        </div>
+        <div className="material-lab-stack" aria-label="Визуальная подборка материалов">
+          {materials.slice(0, 3).map(([title, , image]) => (
+            <span key={title}>
+              <img src={image} alt={title} />
+            </span>
+          ))}
+        </div>
+      </div>
       <div className="material-grid">
         {materials.map(([title, text, image]) => (
           <article className="material-card" key={title}>
@@ -635,9 +737,11 @@ function App() {
       <Header />
       <main>
         <Hero />
+        <ShowroomScene />
         <BrandManifesto />
         <Benefits />
         <Directions />
+        <DesignBoard />
         <ProfessionalQuiz />
         <ProjectStudio />
         <Materials />
