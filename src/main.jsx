@@ -219,6 +219,194 @@ function Quiz() {
   );
 }
 
+const quizSteps = [
+  {
+    id: 'layout',
+    title: 'Какая планировка кухни нужна?',
+    hint: 'Если пока не уверены, выберите консультацию. Мы подскажем после замера.',
+    options: ['Прямая', 'Угловая', 'П-образная', 'С островом', 'Нужна консультация'],
+  },
+  {
+    id: 'size',
+    title: 'Примерная длина кухни',
+    hint: 'Можно указать примерно. Точный расчет сделаем после проекта или замера.',
+    options: ['До 2,5 м', '2,5-4 м', '4-6 м', 'Больше 6 м', 'Не знаю размер'],
+  },
+  {
+    id: 'style',
+    title: 'Какой стиль ближе?',
+    hint: 'Это поможет сразу подобрать фасады, ручки и цветовую гамму.',
+    options: ['Современная', 'Минимализм', 'Классика', 'Светлая кухня', 'Еще выбираю'],
+  },
+  {
+    id: 'material',
+    title: 'Какие фасады рассматриваете?',
+    hint: 'Если сложно выбрать, покажем образцы в салоне и объясним разницу.',
+    options: ['МДФ', 'ЛДСП', 'Пластик / эмаль', 'Комбинированные', 'Нужна помощь'],
+  },
+  {
+    id: 'appliances',
+    title: 'Нужна встроенная техника?',
+    hint: 'Это влияет на проект, розетки, размеры модулей и итоговый бюджет.',
+    options: ['Да, вся техника', 'Частично', 'Техника уже есть', 'Пока не знаю'],
+  },
+  {
+    id: 'deadline',
+    title: 'Когда хотите получить кухню?',
+    hint: 'Срок поможет подобрать решение: модульное, индивидуальное или комбинированное.',
+    options: ['Как можно быстрее', 'В течение месяца', '1-2 месяца', 'Пока планирую'],
+  },
+  {
+    id: 'budget',
+    title: 'Какой бюджет планируете?',
+    hint: 'Мы предложим комплектацию без лишнего давления и скрытых ожиданий.',
+    options: ['До 150 000 ₽', '150 000-250 000 ₽', '250 000-400 000 ₽', 'Больше 400 000 ₽', 'Хочу расчет'],
+  },
+];
+
+function estimateBudget(answers) {
+  const size = answers.size;
+  const layout = answers.layout;
+  const budget = answers.budget;
+
+  if (budget && budget !== 'Хочу расчет') return budget;
+  if (layout === 'С островом' || size === 'Больше 6 м') return 'от 350 000 ₽';
+  if (size === '4-6 м' || layout === 'П-образная') return 'от 250 000 ₽';
+  if (size === '2,5-4 м' || layout === 'Угловая') return 'от 170 000 ₽';
+  return 'от 120 000 ₽';
+}
+
+function ProfessionalQuiz() {
+  const [step, setStep] = useState(0);
+  const [answers, setAnswers] = useState({});
+  const [sent, setSent] = useState(false);
+  const isContactStep = step === quizSteps.length;
+  const current = quizSteps[step];
+  const progress = Math.round(((step + (isContactStep ? 1 : 0)) / (quizSteps.length + 1)) * 100);
+  const canGoNext = isContactStep || Boolean(answers[current?.id]);
+
+  function choose(id, option) {
+    setAnswers((value) => ({ ...value, [id]: option }));
+  }
+
+  function next() {
+    if (step < quizSteps.length && canGoNext) setStep((value) => value + 1);
+  }
+
+  function back() {
+    setStep((value) => Math.max(0, value - 1));
+  }
+
+  function submit(event) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const values = Object.fromEntries(new FormData(form));
+    const lead = {
+      ...answers,
+      ...values,
+      estimate: estimateBudget(answers),
+      source: 'professional-kitchen-quiz',
+      createdAt: new Date().toISOString(),
+    };
+    const currentLeads = JSON.parse(localStorage.getItem('kuhnya-v-dom-leads') || '[]');
+    localStorage.setItem('kuhnya-v-dom-leads', JSON.stringify([lead, ...currentLeads]));
+    form.reset();
+    setSent(true);
+  }
+
+  return (
+    <section className="section quiz-pro" id="quiz">
+      <div className="quiz-pro-copy">
+        <p className="kicker">Квиз на 1 минуту</p>
+        <h2>Соберем вводные и подготовим бесплатный дизайн-проект кухни</h2>
+        <p>
+          Ответьте на несколько вопросов: мы поймем планировку, размеры, стиль,
+          материалы и бюджет. После этого менеджер свяжется с вами и предложит
+          следующий шаг без навязывания.
+        </p>
+        <div className="quiz-summary">
+          <span><Calculator size={18} /> Предварительный ориентир: <b>{estimateBudget(answers)}</b></span>
+          <span><Clock3 size={18} /> Ответ в рабочее время: 10:00-20:00</span>
+          <span><Ruler size={18} /> Замер и проект по Анапе</span>
+        </div>
+      </div>
+
+      <div className="quiz-card">
+        <div className="quiz-top">
+          <span>{isContactStep ? 'Финальный шаг' : `Вопрос ${step + 1} из ${quizSteps.length}`}</span>
+          <strong>{progress}%</strong>
+        </div>
+        <div className="quiz-progress" aria-hidden="true">
+          <i style={{ width: `${progress}%` }} />
+        </div>
+
+        {!isContactStep && (
+          <>
+            <h3>{current.title}</h3>
+            <p>{current.hint}</p>
+            <div className="quiz-options">
+              {current.options.map((option) => (
+                <button
+                  className={answers[current.id] === option ? 'selected' : ''}
+                  key={option}
+                  type="button"
+                  onClick={() => choose(current.id, option)}
+                >
+                  <span>{option}</span>
+                  <Check size={18} />
+                </button>
+              ))}
+            </div>
+            <div className="quiz-controls">
+              <button className="button secondary" type="button" onClick={back} disabled={step === 0}>Назад</button>
+              <button className="button primary" type="button" onClick={next} disabled={!canGoNext}>
+                Далее <ArrowRight size={18} />
+              </button>
+            </div>
+          </>
+        )}
+
+        {isContactStep && (
+          <form className="quiz-contact" onSubmit={submit}>
+            <h3>Куда отправить расчет и проект?</h3>
+            <p>Оставьте контакты. Заявка сохранится на сайте, а быстрый ответ можно получить по телефону.</p>
+            <label>
+              Имя
+              <input name="name" placeholder="Как к вам обращаться" required />
+            </label>
+            <label>
+              Телефон
+              <input name="phone" inputMode="tel" placeholder="+7 ___ ___ __ __" required />
+            </label>
+            <label>
+              Удобное время звонка
+              <select name="callTime" defaultValue="Сегодня">
+                <option>Сегодня</option>
+                <option>Завтра</option>
+                <option>В первой половине дня</option>
+                <option>После 16:00</option>
+              </select>
+            </label>
+            <label>
+              Комментарий
+              <textarea name="comment" rows="3" placeholder="Адрес, размеры или пожелания" />
+            </label>
+            <div className="quiz-controls">
+              <button className="button secondary" type="button" onClick={back}>Назад</button>
+              <button className="button primary" type="submit">Получить расчет <Check size={18} /></button>
+            </div>
+            {sent && (
+              <div className="success">
+                Заявка сохранена. Для срочного ответа позвоните: <a href={`tel:${contacts.phoneClean}`}>{contacts.phone}</a>
+              </div>
+            )}
+          </form>
+        )}
+      </div>
+    </section>
+  );
+}
+
 function Materials() {
   return (
     <section className="section" id="materials">
@@ -354,7 +542,7 @@ function App() {
         <Hero />
         <Benefits />
         <Directions />
-        <Quiz />
+        <ProfessionalQuiz />
         <Materials />
         <Process />
         <Reviews />
