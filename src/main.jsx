@@ -26,6 +26,7 @@ import {
   materials,
   nav,
   process,
+  projectReferences,
   reachPoints,
   reviews,
   studioCards,
@@ -80,7 +81,7 @@ function Header() {
 function Hero() {
   return (
     <section className="hero" id="top">
-      <img className="hero-bg" src="/images/hero-kitchen.png" alt="Современная кухня на заказ в Анапе" />
+      <img className="hero-bg" src="/images/project-sage-wood.jpg" alt="Реальный проект кухни на заказ в Анапе" />
       <div className="hero-shade" />
       <div className="hero-content">
         <p className="eyebrow"><Sparkles size={18} /> Анапа, ТЦ Большой, 2 этаж</p>
@@ -131,15 +132,15 @@ function ShowroomScene() {
         </div>
       </div>
       <div className="showroom-collage">
-        <img className="showroom-main" src="/images/hero-kitchen.png" alt="Кухня в Дом - визуал современной кухни" />
+        <img className="showroom-main" src="/images/project-warm-premium.jpg" alt="Премиальный референс кухни Кухня в Дом" />
         <div className="showroom-logo-card">
           <img src="/images/kuhnya-v-dom-logo.png" alt="Логотип Кухня в Дом" />
           <span>Кухни и мебель на заказ</span>
         </div>
         <div className="showroom-materials" aria-label="Примеры фасадов и материалов">
-          {materials.slice(0, 4).map(([title, , image]) => (
-            <span key={title}>
-              <img src={image} alt={title} />
+          {projectReferences.slice(0, 4).map((item) => (
+            <span key={item.title}>
+              <img src={item.image} alt={item.title} />
             </span>
           ))}
         </div>
@@ -201,8 +202,8 @@ function DesignBoard() {
       </div>
       <div className="board-visual">
         <div className="board-hero">
-          <img src="/images/hero-kitchen.png" alt="Дизайн-проект кухни в Анапе" />
-          <span>3D-вид кухни</span>
+          <img src="/images/project-3d-dark.jpg" alt="3D-проект кухни с размерами в Анапе" />
+          <span>3D-проект с размерами</span>
         </div>
         <div className="board-panel">
           <div className="board-panel-top">
@@ -227,6 +228,46 @@ function DesignBoard() {
               <img src={image} alt={title} />
               <figcaption>{title}</figcaption>
             </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ProjectReferences() {
+  const featured = projectReferences[0];
+
+  return (
+    <section className="section references-section" id="references">
+      <div className="references-head">
+        <SectionTitle
+          kicker="Реальные проекты как референс"
+          title="Собираем кухню по живым примерам: цвет, форма, хранение, техника"
+          text="Теперь визуальная основа сайта опирается на реальные кухни, 3D-проекты и технические схемы. Так клиент быстрее понимает, какой стиль ему близок."
+        />
+        <a className="button secondary" href="#quiz">Подобрать похожую кухню</a>
+      </div>
+      <div className="references-showcase">
+        <article className="reference-feature">
+          <img src={featured.image} alt={featured.title} />
+          <div>
+            <span>{featured.type}</span>
+            <h3>{featured.title}</h3>
+            <p>{featured.text}</p>
+            <a href="#quiz">Хочу похожий проект <ArrowRight size={16} /></a>
+          </div>
+        </article>
+        <div className="reference-grid">
+          {projectReferences.slice(1).map((item) => (
+            <article className="reference-card" key={item.title}>
+              <img src={item.image} alt={item.title} />
+              <div>
+                <span>{item.type}</span>
+                <strong>{item.title}</strong>
+                <p>{item.text}</p>
+              </div>
+            </article>
           ))}
         </div>
       </div>
@@ -259,7 +300,7 @@ function ProjectStudio() {
   return (
     <section className="section studio-section" id="studio">
       <div className="studio-visual">
-        <img src="/images/hero-kitchen.png" alt="Дизайн-проект кухни Кухня в Дом" />
+        <img src="/images/project-soft-minimal.jpg" alt="Референс светлой кухни Кухня в Дом" />
         <div className="studio-badge">
           <Gem size={20} />
           <span>3D-концепция</span>
@@ -741,6 +782,7 @@ function App() {
         <BrandManifesto />
         <Benefits />
         <Directions />
+        <ProjectReferences />
         <DesignBoard />
         <ProfessionalQuiz />
         <ProjectStudio />

@@ -722,6 +722,123 @@ p {
   gap: 16px;
 }
 
+.references-section {
+  width: 100%;
+  max-width: none;
+  padding-right: max(20px, calc((100vw - 1180px) / 2));
+  padding-left: max(20px, calc((100vw - 1180px) / 2));
+  background:
+    linear-gradient(180deg, rgba(255, 253, 247, 0), rgba(232, 239, 236, 0.7) 48%, rgba(255, 253, 247, 0)),
+    var(--paper);
+}
+
+.references-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 34px;
+}
+
+.references-head .section-title {
+  margin-bottom: 0;
+}
+
+.references-showcase {
+  display: grid;
+  grid-template-columns: minmax(420px, 0.92fr) minmax(0, 1.08fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.reference-feature,
+.reference-card {
+  overflow: hidden;
+  border: 1px solid rgba(18, 58, 50, 0.13);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 22px 64px rgba(18, 58, 50, 0.1);
+}
+
+.reference-feature {
+  display: grid;
+  min-height: auto;
+}
+
+.reference-feature img {
+  width: 100%;
+  height: 430px;
+  object-fit: cover;
+}
+
+.reference-feature div {
+  padding: 26px;
+}
+
+.reference-feature span,
+.reference-card span {
+  display: inline-flex;
+  margin-bottom: 10px;
+  color: var(--coral);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.reference-feature h3 {
+  margin-bottom: 10px;
+  font-size: 30px;
+}
+
+.reference-feature a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  color: var(--deep);
+  font-weight: 900;
+}
+
+.reference-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.reference-card {
+  min-width: 0;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.reference-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 28px 80px rgba(18, 58, 50, 0.16);
+}
+
+.reference-card img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+}
+
+.reference-card div {
+  padding: 18px;
+}
+
+.reference-card strong {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--ink);
+  font-size: 17px;
+  line-height: 1.25;
+}
+
+.reference-card p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
 .tile,
 .direction-card,
 .material-card,
@@ -1476,6 +1593,7 @@ p {
   .showroom-scene,
   .design-board,
   .material-lab,
+  .references-showcase,
   .brand-manifesto,
   .quiz-section,
   .quiz-pro,
@@ -1499,6 +1617,10 @@ p {
 
   .board-visual {
     min-height: 560px;
+  }
+
+  .references-head {
+    display: grid;
   }
 
   .hero-studio {
@@ -1702,8 +1824,44 @@ p {
   .direction-grid,
   .material-grid,
   .review-grid,
-  .reach-grid {
+  .reach-grid,
+  .reference-grid {
     grid-template-columns: 1fr;
+  }
+
+  .references-section {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .references-head .button {
+    width: 100%;
+  }
+
+  .reference-feature {
+    min-height: auto;
+    border-radius: 22px;
+  }
+
+  .reference-feature img {
+    height: 260px;
+  }
+
+  .reference-feature div,
+  .reference-card div {
+    padding: 20px;
+  }
+
+  .reference-feature h3 {
+    font-size: 24px;
+  }
+
+  .reference-card {
+    border-radius: 22px;
+  }
+
+  .reference-card img {
+    height: 220px;
   }
 
   .design-board {
