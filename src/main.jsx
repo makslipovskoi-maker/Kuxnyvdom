@@ -26,7 +26,9 @@ function Header() {
   return (
     <header className="site-header">
       <a className="brand" href="#top" aria-label="Кухня в Дом">
-        <span className="brand-mark">КД</span>
+        <span className="brand-mark">
+          <img src="/images/kuhnya-v-dom-logo.png" alt="" />
+        </span>
         <span>
           <strong>Кухня в Дом</strong>
           <small>кухни и мебель на заказ</small>
