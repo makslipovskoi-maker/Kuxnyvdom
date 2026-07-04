@@ -17,7 +17,19 @@ import {
   Truck,
   X,
 } from 'lucide-react';
-import { benefits, contacts, directions, faqs, materials, nav, process, reviews } from './data';
+import {
+  benefits,
+  brandPillars,
+  contacts,
+  directions,
+  faqs,
+  materials,
+  nav,
+  process,
+  reachPoints,
+  reviews,
+  studioCards,
+} from './data';
 import './styles.css';
 
 function Header() {
@@ -71,11 +83,11 @@ function Hero() {
       <img className="hero-bg" src="/images/hero-kitchen.png" alt="Современная кухня на заказ в Анапе" />
       <div className="hero-shade" />
       <div className="hero-content">
-        <p className="eyebrow"><Sparkles size={18} /> Анапа, ТЦ Большой</p>
+        <p className="eyebrow"><Sparkles size={18} /> Анапа, ТЦ Большой, 2 этаж</p>
         <h1>Кухня в Дом</h1>
         <p className="lead">
-          Кухни и мебель на заказ в Анапе с бесплатным дизайн-проектом, замером,
-          подбором материалов и установкой под ключ.
+          Премиальные кухни и мебель на заказ в Анапе: сначала собираем
+          дизайн-проект, материалы и бюджет, потом запускаем кухню в работу.
         </p>
         <div className="hero-actions">
           <a className="button primary" href="#quiz">
@@ -86,11 +98,42 @@ function Hero() {
           </a>
         </div>
       </div>
+      <div className="hero-studio" aria-label="Бесплатный дизайн-проект кухни">
+        <img src="/images/kuhnya-v-dom-logo.png" alt="Логотип Кухня в Дом" />
+        <span>Бесплатный проект</span>
+        <strong>Планировка + фасады + ориентир сметы</strong>
+        <p>Соберем основу кухни за один короткий квиз и уточним детали по телефону.</p>
+        <a href="#quiz">Начать квиз <ArrowRight size={16} /></a>
+      </div>
       <div className="hero-proof" aria-label="Ключевые преимущества">
         <span><Ruler size={18} /> Замер</span>
         <span><Gem size={18} /> 3D-проект</span>
         <span><Truck size={18} /> Доставка</span>
         <span><ShieldCheck size={18} /> Установка</span>
+      </div>
+    </section>
+  );
+}
+
+function BrandManifesto() {
+  return (
+    <section className="section brand-manifesto" id="brand">
+      <div className="brand-intro">
+        <p className="kicker">Ребрендинг</p>
+        <h2>Кухня в Дом — не просто гарнитур, а центр будущего дома</h2>
+        <p>
+          Мы начинаем с понятного проекта: показываем, какой может быть кухня,
+          какие материалы подойдут под интерьер и как спокойно перейти от идеи
+          к установленной мебели.
+        </p>
+      </div>
+      <div className="brand-pillars">
+        {brandPillars.map(([title, text]) => (
+          <article key={title}>
+            <span>{title}</span>
+            <p>{text}</p>
+          </article>
+        ))}
       </div>
     </section>
   );
@@ -111,13 +154,65 @@ function Benefits() {
     <section className="section" id="benefits">
       <SectionTitle
         kicker="Почему выбирают нас"
-        title="Лендинг продает доверие, а кухня начинается с понятного проекта"
-        text="Для рекламы и поиска важны не только красивые фото, но и ясный путь клиента: увидеть, понять, оставить заявку."
+        title="Покупателю не нужно разбираться в кухнях одному"
+        text="Мы превращаем сложный выбор в понятный маршрут: стиль, размеры, материалы, бюджет и установка."
       />
       <div className="benefit-grid">
         {benefits.map(([title, text], index) => (
           <article className="tile" key={title}>
             <span className="tile-number">0{index + 1}</span>
+            <h3>{title}</h3>
+            <p>{text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function ProjectStudio() {
+  return (
+    <section className="section studio-section" id="studio">
+      <div className="studio-visual">
+        <img src="/images/hero-kitchen.png" alt="Дизайн-проект кухни Кухня в Дом" />
+        <div className="studio-badge">
+          <Gem size={20} />
+          <span>3D-концепция</span>
+        </div>
+      </div>
+      <div className="studio-copy">
+        <p className="kicker">Дизайн-проект как сервис</p>
+        <h2>Покажем кухню до того, как вы примете решение</h2>
+        <p>
+          До заказа вы видите планировку, понимаете материалы и заранее
+          обсуждаете бюджет. Так кухня становится не рискованной покупкой,
+          а понятным домашним проектом.
+        </p>
+        <div className="studio-grid">
+          {studioCards.map(([title, text]) => (
+            <article key={title}>
+              <strong>{title}</strong>
+              <span>{text}</span>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function LocalReach() {
+  return (
+    <section className="section reach-section">
+      <SectionTitle
+        kicker="Охват в Анапе"
+        title="Мы рядом: в Анапе, в ТЦ Большой, с понятным маршрутом к проекту"
+        text="Можно начать с квиза, позвонить с телефона или приехать в салон, чтобы увидеть материалы и обсудить кухню лично."
+      />
+      <div className="reach-grid">
+        {reachPoints.map(([title, text]) => (
+          <article key={title}>
+            <MapPin size={20} />
             <h3>{title}</h3>
             <p>{text}</p>
           </article>
@@ -540,10 +635,13 @@ function App() {
       <Header />
       <main>
         <Hero />
+        <BrandManifesto />
         <Benefits />
         <Directions />
         <ProfessionalQuiz />
+        <ProjectStudio />
         <Materials />
+        <LocalReach />
         <Process />
         <Reviews />
         <FAQ />
