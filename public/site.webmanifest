@@ -1,0 +1,16 @@
+{
+  "name": "Кухня в Дом",
+  "short_name": "Кухня в Дом",
+  "lang": "ru",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f7f4ec",
+  "theme_color": "#123a32",
+  "icons": [
+    {
+      "src": "/images/kuhnya-v-dom-logo.png",
+      "sizes": "any",
+      "type": "image/png"
+    }
+  ]
+}
