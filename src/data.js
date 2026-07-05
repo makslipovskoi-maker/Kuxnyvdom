@@ -9,11 +9,11 @@ export const contacts = {
 };
 
 export const nav = [
-  ['Бренд', '#brand'],
+  ['Каталог', '#catalog'],
+  ['Фото работ', '#portfolio'],
   ['Преимущества', '#benefits'],
   ['Квиз', '#quiz'],
-  ['Портфолио', '#portfolio'],
-  ['Проект', '#studio'],
+  ['Замер', '#measure'],
   ['Материалы', '#materials'],
   ['Контакты', '#contacts'],
 ];
@@ -29,6 +29,72 @@ export const directions = [
   { title: 'Кухни на заказ', text: 'Прямые, угловые, П-образные, с островом и встроенной техникой.', tag: 'Главное направление' },
   { title: 'Модульные кухни', text: 'Быстрый подбор готовых решений, когда нужно уложиться в срок и бюджет.', tag: 'Быстрый старт' },
   { title: 'Мебель на заказ', text: 'Шкафы, прихожие, тумбы, хранение и мебель в едином стиле с кухней.', tag: 'Для всего дома' },
+];
+
+export const catalogSections = [
+  {
+    title: 'Кухни на заказ',
+    text: 'Прямые, угловые, П-образные, с островом, пеналами и встроенной техникой.',
+    image: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Hamptons_Kitchen_Design_1.jpg?width=1400',
+    price: 'проект бесплатно',
+    href: '#quiz',
+  },
+  {
+    title: 'Шкафы-купе и распашные шкафы',
+    text: 'Хранение под размер: спальня, прихожая, детская, гардеробная зона.',
+    image: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Cedar_closet_in_the_bedroom_in_Woodrow_Wilson_House.jpg?width=1400',
+    price: 'расчет по размерам',
+    href: '#quiz',
+  },
+  {
+    title: 'Гардеробные',
+    text: 'Открытые и закрытые системы хранения с полками, штангами, антресолями и подсветкой.',
+    image: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/EFTA00000645_-_Neatly_organized_bedroom_closet_filled_with_white_linens_pillows_and_bedding_items_on_multiple_shelves.jpg?width=1400',
+    price: 'под вашу нишу',
+    href: '#quiz',
+  },
+  {
+    title: 'ТВ-зоны и гостиные',
+    text: 'Панели, тумбы, витрины, скрытие проводов и единый стиль с кухней.',
+    image: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/EFTA00002142_-_Modern_living_room_with_a_large_flat-screen_TV_on_a_wooden_media_console_set_against_white_walls_and_tiled_flooring.jpg?width=1400',
+    price: 'дизайн под интерьер',
+    href: '#quiz',
+  },
+  {
+    title: 'Прихожие и хранение',
+    text: 'Шкафы, банкетки, обувницы, панели и аккуратные решения для входной зоны.',
+    image: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Blue_white_kitchen_interior_(Unsplash).jpg?width=1400',
+    price: 'от замера до монтажа',
+    href: '#quiz',
+  },
+  {
+    title: 'Мебель в ванную и постирочную',
+    text: 'Тумбы, пеналы, хозяйственные шкафы и влагостойкие решения для сложных зон.',
+    image: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Modern_Kitchen_Design_in_the_USA.jpg?width=1400',
+    price: 'индивидуально',
+    href: '#quiz',
+  },
+];
+
+export const factoryFacts = [
+  ['01', 'Замерщик приедет с образцами и уточнит размеры помещения.'],
+  ['02', 'Дизайнер соберет планировку, фасады, хранение и ориентир бюджета.'],
+  ['03', 'После согласования мебель уходит в производство и монтаж под ключ.'],
+];
+
+export const seoCatalogLinks = [
+  'Кухни на заказ в Анапе',
+  'Кухонные гарнитуры Анапа',
+  'Шкафы на заказ Анапа',
+  'Гардеробные на заказ',
+  'ТВ-зоны на заказ',
+  'Мебель в прихожую',
+  'Мебель для спальни',
+  'Корпусная мебель под размер',
+  'Замер кухни Анапа',
+  'Дизайн-проект кухни',
+  'Мебель в ТЦ Большой',
+  'Кухни Анапское шоссе',
 ];
 
 export const brandPillars = [

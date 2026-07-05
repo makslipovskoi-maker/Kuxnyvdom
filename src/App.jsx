@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Header, Hero } from './components/HeaderHero';
+import { CatalogShowcase, MeasurementBanner, TopInfoBar } from './components/CatalogSections';
 import { BrandAndServices, Showroom } from './components/ShowroomServices';
 import { Portfolio, ProjectAndMaterials } from './components/PortfolioProject';
 import { QuizSection } from './components/QuizSection';
@@ -43,14 +44,17 @@ export default function App() {
   useSiteSeo();
   return (
     <>
+      <TopInfoBar />
       <Header />
       <main>
         <Hero />
         <Showroom />
         <BrandAndServices />
+        <CatalogShowcase />
         <Portfolio />
         <ProjectAndMaterials />
         <QuizSection />
+        <MeasurementBanner />
         <LowerSections />
       </main>
       <Footer />

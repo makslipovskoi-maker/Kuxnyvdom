@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Calculator, ChevronDown, Clock3, MapPin, Phone } from 'lucide-react';
-import { contacts, faqs, process, reachPoints, reviews } from '../data';
+import { contacts, faqs, process, reachPoints, reviews, seoCatalogLinks } from '../data';
 import { trackEvent } from '../leadService';
 import { SectionTitle } from './ShowroomServices';
 
@@ -21,7 +21,19 @@ export function LowerSections() {
 }
 
 export function Footer() {
-  return <footer className="site-footer"><div><strong>Кухня в Дом</strong><span>Кухни и мебель на заказ в Анапе</span></div><a href={`tel:${contacts.phoneClean}`}>{contacts.phone}</a><a href={contacts.mapUrl} target="_blank" rel="noreferrer">{contacts.shortAddress}</a><a className="footer-privacy" href="/privacy.html">Политика конфиденциальности</a></footer>;
+  return (
+    <footer className="site-footer">
+      <div className="footer-main">
+        <div><strong>Кухня в Дом</strong><span>Кухни и мебель на заказ в Анапе</span></div>
+        <a href={`tel:${contacts.phoneClean}`}>{contacts.phone}</a>
+        <a href={contacts.mapUrl} target="_blank" rel="noreferrer">{contacts.shortAddress}</a>
+        <a className="footer-privacy" href="/privacy.html">Политика конфиденциальности</a>
+      </div>
+      <div className="footer-seo" aria-label="Популярные направления">
+        {seoCatalogLinks.map((item) => <a href="#quiz" key={item}>{item}</a>)}
+      </div>
+    </footer>
+  );
 }
 
 export function StickyBar() {
