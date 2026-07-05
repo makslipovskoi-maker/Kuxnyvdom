@@ -84,7 +84,7 @@ function Header() {
 function Hero() {
   return (
     <section className="hero" id="top">
-      <img className="hero-bg" src="/images/project-sage-wood.jpg" alt="Реальный проект кухни на заказ в Анапе" />
+      <img className="hero-bg" src={projectReferences[0].image} alt="Интернет-референс кухни на заказ в Анапе" />
       <div className="hero-shade" />
       <div className="hero-content">
         <p className="eyebrow"><Sparkles size={18} /> Анапа, ТЦ Большой, 2 этаж</p>
@@ -135,7 +135,7 @@ function ShowroomScene() {
         </div>
       </div>
       <div className="showroom-collage">
-        <img className="showroom-main" src="/images/project-warm-premium.jpg" alt="Премиальный референс кухни Кухня в Дом" />
+        <img className="showroom-main" src={projectReferences[3].image} alt="Премиальный референс кухни Кухня в Дом" />
         <div className="showroom-logo-card">
           <img src="/images/kuhnya-v-dom-logo.png" alt="Логотип Кухня в Дом" />
           <span>Кухни и мебель на заказ</span>
@@ -205,7 +205,7 @@ function DesignBoard() {
       </div>
       <div className="board-visual">
         <div className="board-hero">
-          <img src="/images/project-3d-dark.jpg" alt="3D-проект кухни с размерами в Анапе" />
+          <img src={projectReferences[6].image} alt="3D-проект кухни с размерами в Анапе" />
           <span>3D-проект с размерами</span>
         </div>
         <div className="board-panel">
@@ -287,6 +287,7 @@ function ProfessionalPortfolio() {
               {featured.details.map((detail) => (
                 <small key={detail}>{detail}</small>
               ))}
+              {featured.source && <small>{featured.source}</small>}
             </div>
             <a href="#quiz">Хочу похожий проект <ArrowRight size={16} /></a>
           </div>
@@ -303,6 +304,7 @@ function ProfessionalPortfolio() {
                   {item.details.slice(0, 2).map((detail) => (
                     <small key={detail}>{detail}</small>
                   ))}
+                  {item.source && <small>{item.source}</small>}
                 </div>
               </div>
             </article>
@@ -343,7 +345,7 @@ function ProjectStudio() {
   return (
     <section className="section studio-section" id="studio">
       <div className="studio-visual">
-        <img src="/images/project-soft-minimal.jpg" alt="Референс светлой кухни Кухня в Дом" />
+        <img src={projectReferences[1].image} alt="Референс светлой кухни Кухня в Дом" />
         <div className="studio-badge">
           <Gem size={20} />
           <span>3D-концепция</span>
