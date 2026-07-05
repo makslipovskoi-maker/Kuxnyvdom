@@ -25,6 +25,9 @@ import {
   faqs,
   materials,
   nav,
+  portfolioCategories,
+  portfolioInsights,
+  portfolioProjects,
   process,
   projectReferences,
   reachPoints,
@@ -235,41 +238,81 @@ function DesignBoard() {
   );
 }
 
-function ProjectReferences() {
-  const featured = projectReferences[0];
+function ProfessionalPortfolio() {
+  const [activeCategory, setActiveCategory] = useState('Все');
+  const filteredProjects = activeCategory === 'Все'
+    ? portfolioProjects
+    : portfolioProjects.filter((item) => item.category === activeCategory);
+  const featured = filteredProjects[0] || portfolioProjects[0];
+  const gridItems = filteredProjects.filter((item) => item.title !== featured.title);
 
   return (
-    <section className="section references-section" id="references">
-      <div className="references-head">
+    <section className="section portfolio-section" id="portfolio">
+      <div className="portfolio-head">
         <SectionTitle
-          kicker="Реальные проекты как референс"
-          title="Собираем кухню по живым примерам: цвет, форма, хранение, техника"
-          text="Теперь визуальная основа сайта опирается на реальные кухни, 3D-проекты и технические схемы. Так клиент быстрее понимает, какой стиль ему близок."
+          kicker="Профессиональное портфолио"
+          title="Кухни, гардеробные, ТВ-зоны и корпусная мебель в одном каталоге"
+          text="Собрали реальные проекты и проектные визуализации так, как клиент ищет в интернете: по стилю, задаче, форме хранения и готовности к расчету."
         />
-        <a className="button secondary" href="#quiz">Подобрать похожую кухню</a>
+        <a className="button secondary" href="#quiz">Подобрать похожий проект</a>
       </div>
-      <div className="references-showcase">
-        <article className="reference-feature">
+      <div className="portfolio-insights" aria-label="Самые просматриваемые направления">
+        {portfolioInsights.map(([title, text]) => (
+          <article key={title}>
+            <span>{title}</span>
+            <p>{text}</p>
+          </article>
+        ))}
+      </div>
+      <div className="portfolio-filters" aria-label="Фильтр портфолио">
+        {portfolioCategories.map((category) => (
+          <button
+            className={activeCategory === category ? 'active' : ''}
+            key={category}
+            type="button"
+            onClick={() => setActiveCategory(category)}
+          >
+            {category}
+          </button>
+        ))}
+      </div>
+      <div className="portfolio-showcase">
+        <article className="portfolio-feature">
           <img src={featured.image} alt={featured.title} />
           <div>
-            <span>{featured.type}</span>
+            <span>{featured.label}</span>
             <h3>{featured.title}</h3>
-            <p>{featured.text}</p>
+            <p>{featured.description}</p>
+            <div className="portfolio-tags">
+              {featured.details.map((detail) => (
+                <small key={detail}>{detail}</small>
+              ))}
+            </div>
             <a href="#quiz">Хочу похожий проект <ArrowRight size={16} /></a>
           </div>
         </article>
-        <div className="reference-grid">
-          {projectReferences.slice(1).map((item) => (
-            <article className="reference-card" key={item.title}>
+        <div className="portfolio-grid">
+          {gridItems.map((item) => (
+            <article className="portfolio-card" key={item.title}>
               <img src={item.image} alt={item.title} />
               <div>
-                <span>{item.type}</span>
+                <span>{item.category}</span>
                 <strong>{item.title}</strong>
-                <p>{item.text}</p>
+                <p>{item.description}</p>
+                <div className="portfolio-tags">
+                  {item.details.slice(0, 2).map((detail) => (
+                    <small key={detail}>{detail}</small>
+                  ))}
+                </div>
               </div>
             </article>
           ))}
         </div>
+      </div>
+      <div className="portfolio-cta">
+        <strong>Не нашли свой вариант?</strong>
+        <span>Пришлите размеры или фото помещения, и мы соберем проект под вашу задачу.</span>
+        <a className="button primary" href="#quiz">Начать с квиза <ArrowRight size={18} /></a>
       </div>
     </section>
   );
@@ -782,7 +825,7 @@ function App() {
         <BrandManifesto />
         <Benefits />
         <Directions />
-        <ProjectReferences />
+        <ProfessionalPortfolio />
         <DesignBoard />
         <ProfessionalQuiz />
         <ProjectStudio />

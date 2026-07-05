@@ -722,7 +722,7 @@ p {
   gap: 16px;
 }
 
-.references-section {
+.portfolio-section {
   width: 100%;
   max-width: none;
   padding-right: max(20px, calc((100vw - 1180px) / 2));
@@ -732,7 +732,7 @@ p {
     var(--paper);
 }
 
-.references-head {
+.portfolio-head {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -740,19 +740,77 @@ p {
   margin-bottom: 34px;
 }
 
-.references-head .section-title {
+.portfolio-head .section-title {
   margin-bottom: 0;
 }
 
-.references-showcase {
+.portfolio-insights {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.portfolio-insights article {
+  min-height: 124px;
+  padding: 20px;
+  border: 1px solid rgba(18, 58, 50, 0.12);
+  border-radius: 24px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(247, 244, 236, 0.88)),
+    var(--white);
+}
+
+.portfolio-insights span {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--coral);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.portfolio-insights p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.portfolio-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.portfolio-filters button {
+  min-height: 46px;
+  padding: 10px 16px;
+  border: 1px solid rgba(18, 58, 50, 0.14);
+  border-radius: 999px;
+  color: var(--deep);
+  background: rgba(255, 255, 255, 0.76);
+  font-weight: 900;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.portfolio-filters button:hover,
+.portfolio-filters button.active {
+  color: var(--white);
+  background: var(--deep);
+  transform: translateY(-2px);
+}
+
+.portfolio-showcase {
   display: grid;
   grid-template-columns: minmax(420px, 0.92fr) minmax(0, 1.08fr);
   gap: 18px;
   align-items: start;
 }
 
-.reference-feature,
-.reference-card {
+.portfolio-feature,
+.portfolio-card {
   overflow: hidden;
   border: 1px solid rgba(18, 58, 50, 0.13);
   border-radius: 28px;
@@ -760,23 +818,23 @@ p {
   box-shadow: 0 22px 64px rgba(18, 58, 50, 0.1);
 }
 
-.reference-feature {
+.portfolio-feature {
   display: grid;
   min-height: auto;
 }
 
-.reference-feature img {
+.portfolio-feature img {
   width: 100%;
   height: 430px;
   object-fit: cover;
 }
 
-.reference-feature div {
+.portfolio-feature div {
   padding: 26px;
 }
 
-.reference-feature span,
-.reference-card span {
+.portfolio-feature span,
+.portfolio-card span {
   display: inline-flex;
   margin-bottom: 10px;
   color: var(--coral);
@@ -785,12 +843,12 @@ p {
   text-transform: uppercase;
 }
 
-.reference-feature h3 {
+.portfolio-feature h3 {
   margin-bottom: 10px;
   font-size: 30px;
 }
 
-.reference-feature a {
+.portfolio-feature a {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -799,33 +857,33 @@ p {
   font-weight: 900;
 }
 
-.reference-grid {
+.portfolio-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 18px;
 }
 
-.reference-card {
+.portfolio-card {
   min-width: 0;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.reference-card:hover {
+.portfolio-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 28px 80px rgba(18, 58, 50, 0.16);
 }
 
-.reference-card img {
+.portfolio-card img {
   width: 100%;
   height: 190px;
   object-fit: cover;
 }
 
-.reference-card div {
+.portfolio-card div {
   padding: 18px;
 }
 
-.reference-card strong {
+.portfolio-card strong {
   display: block;
   margin-bottom: 8px;
   color: var(--ink);
@@ -833,10 +891,51 @@ p {
   line-height: 1.25;
 }
 
-.reference-card p {
+.portfolio-card p {
   margin: 0;
   font-size: 14px;
   line-height: 1.55;
+}
+
+.portfolio-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.portfolio-tags small {
+  padding: 7px 9px;
+  border-radius: 999px;
+  color: var(--deep);
+  background: rgba(18, 58, 50, 0.08);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.portfolio-cta {
+  display: grid;
+  grid-template-columns: 0.7fr 1fr auto;
+  gap: 18px;
+  align-items: center;
+  margin-top: 22px;
+  padding: 22px;
+  border: 1px solid rgba(18, 58, 50, 0.16);
+  border-radius: 28px;
+  background:
+    linear-gradient(135deg, rgba(18, 58, 50, 0.92), rgba(8, 17, 14, 0.96)),
+    var(--deep);
+  color: var(--white);
+  box-shadow: var(--shadow);
+}
+
+.portfolio-cta strong {
+  font-size: 22px;
+}
+
+.portfolio-cta span {
+  color: rgba(255, 255, 255, 0.74);
+  line-height: 1.5;
 }
 
 .tile,
@@ -1593,7 +1692,8 @@ p {
   .showroom-scene,
   .design-board,
   .material-lab,
-  .references-showcase,
+  .portfolio-showcase,
+  .portfolio-cta,
   .brand-manifesto,
   .quiz-section,
   .quiz-pro,
@@ -1619,8 +1719,12 @@ p {
     min-height: 560px;
   }
 
-  .references-head {
+  .portfolio-head {
     display: grid;
+  }
+
+  .portfolio-insights {
+    grid-template-columns: 1fr;
   }
 
   .hero-studio {
@@ -1825,43 +1929,56 @@ p {
   .material-grid,
   .review-grid,
   .reach-grid,
-  .reference-grid {
+  .portfolio-grid {
     grid-template-columns: 1fr;
   }
 
-  .references-section {
+  .portfolio-section {
     padding-right: 16px;
     padding-left: 16px;
   }
 
-  .references-head .button {
+  .portfolio-head .button {
     width: 100%;
   }
 
-  .reference-feature {
+  .portfolio-feature {
     min-height: auto;
     border-radius: 22px;
   }
 
-  .reference-feature img {
+  .portfolio-feature img {
     height: 260px;
   }
 
-  .reference-feature div,
-  .reference-card div {
+  .portfolio-feature div,
+  .portfolio-card div {
     padding: 20px;
   }
 
-  .reference-feature h3 {
+  .portfolio-feature h3 {
     font-size: 24px;
   }
 
-  .reference-card {
+  .portfolio-card {
     border-radius: 22px;
   }
 
-  .reference-card img {
+  .portfolio-card img {
     height: 220px;
+  }
+
+  .portfolio-filters {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .portfolio-filters button {
+    width: 100%;
+  }
+
+  .portfolio-cta {
+    padding: 20px;
   }
 
   .design-board {
